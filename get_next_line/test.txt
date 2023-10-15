@@ -2,4 +2,9 @@ ok tudo ok
 mas tu??
 nn
 \n
+
+\0 
+
+////
+
 ok

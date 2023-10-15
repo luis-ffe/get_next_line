@@ -14,7 +14,7 @@
 # define GET_NEXTLINE_H
 
 #ifndef BUFFER_SIZE
-# define BUFFER_SIZE = 23
+# define BUFFER_SIZE = 3
 #endif
 
 # include <stdio.h>
@@ -23,8 +23,12 @@
 # include <limits.h>
 # include <unistd.h>
 
-char *get_next_line(int fd);
+typedef struct s_list
+{
+	char            *element;
+	struct s_list   *next;
+}       t_list;
 
-char *ft_readnotsureyetwhat(int fd, char *str);
+char *get_next_line(int fd);
 
 #endif
