@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: luis-ffe <luis-ffe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/16 18:58:15 by luis-ffe          #+#    #+#             */
-/*   Updated: 2023/10/16 21:10:16 by luis-ffe         ###   ########.fr       */
+/*   Created: 2023/10/16 18:58:03 by luis-ffe          #+#    #+#             */
+/*   Updated: 2023/10/16 21:24:28 by luis-ffe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 void	*ft_mem_alloc(size_t nmemb, size_t size)
 {
@@ -63,12 +63,12 @@ char	*ft_add_nest(char *nest, char *buffer)
 	int		j;
 	int		size;
 
+	i = 0;
+	j = 0;
 	if (!nest)
 		nest = ft_mem_alloc(1, sizeof(char));
 	if (!buffer)
 		return (NULL);
-	i = 0;
-	j = 0;
 	size = ft_strlen(nest) + ft_strlen(buffer);
 	temp = ft_mem_alloc((size + 1), sizeof(char));
 	while (nest[i])
