@@ -6,7 +6,7 @@
 /*   By: luis-ffe <luis-ffe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 18:57:46 by luis-ffe          #+#    #+#             */
-/*   Updated: 2023/10/16 21:25:50 by luis-ffe         ###   ########.fr       */
+/*   Updated: 2023/10/17 07:21:32 by luis-ffe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,21 +66,21 @@ void	*ft_clean(char **nest, char **buffer)
 
 char	*get_next_line(int fd)
 {
-	int				read_len;
+	int				read_count;
 	char			*buffer;
 	char			*line;
 	static char		*nest[FOPEN_MAX];
 
-	read_len = BUFFER_SIZE;
+	read_count = BUFFER_SIZE;
 	if (fd < 0 || BUFFER_SIZE <= 0 || fd > FOPEN_MAX)
 		return (NULL);
 	buffer = ft_mem_alloc(BUFFER_SIZE + 1, sizeof(char));
-	while (!(ft_findnl(buffer)) && read_len != 0)
+	while (!(ft_findnl(buffer)) && read_count != 0)
 	{
-		read_len = read(fd, buffer, BUFFER_SIZE);
-		if (read_len == -1)
+		read_count = read(fd, buffer, BUFFER_SIZE);
+		if (read_count == -1)
 			return (ft_clean(&nest[fd], &buffer));
-		buffer[read_len] = '\0';
+		buffer[read_count] = '\0';
 		nest[fd] = ft_add_nest(nest[fd], buffer);
 	}
 	line = get_newline(nest[fd]);

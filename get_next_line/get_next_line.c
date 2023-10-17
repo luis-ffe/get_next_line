@@ -6,7 +6,7 @@
 /*   By: luis-ffe <luis-ffe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 18:58:34 by luis-ffe          #+#    #+#             */
-/*   Updated: 2023/10/16 21:04:47 by luis-ffe         ###   ########.fr       */
+/*   Updated: 2023/10/17 07:18:30 by luis-ffe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ char	*get_newline(char *nest)
 
 char	*get_rest(char *nest)
 {
-	char	*tmp;
+	char	*temp;
 	int		i;
 	int		index;
 
@@ -48,12 +48,12 @@ char	*get_rest(char *nest)
 		free(nest);
 		return (NULL);
 	}
-	tmp = ft_mem_alloc(ft_strlen(nest) - i + 1, sizeof(char));
+	temp = ft_mem_alloc(ft_strlen(nest) - i + 1, sizeof(char));
 	while (nest[i])
-		tmp[index++] = nest[++i];
-	tmp[index] = '\0';
+		temp[index++] = nest[++i];
+	temp[index] = '\0';
 	free(nest);
-	return (tmp);
+	return (temp);
 }
 
 void	*ft_clean(char **nest, char **buffer)
@@ -66,21 +66,21 @@ void	*ft_clean(char **nest, char **buffer)
 
 char	*get_next_line(int fd)
 {
-	int				read_len;
+	int				read_count;
 	char			*buffer;
 	char			*line;
 	static char		*nest;
 
-	read_len = BUFFER_SIZE;
+	read_count = BUFFER_SIZE;
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
 	buffer = ft_mem_alloc(BUFFER_SIZE + 1, sizeof(char));
-	while (!(ft_findnl(buffer)) && read_len)
+	while (!(ft_findnl(buffer)) && read_count)
 	{
-		read_len = read(fd, buffer, BUFFER_SIZE);
-		if (read_len == -1)
+		read_count = read(fd, buffer, BUFFER_SIZE);
+		if (read_count == -1)
 			return (ft_clean(&nest, &buffer));
-		buffer[read_len] = '\0';
+		buffer[read_count] = '\0';
 		nest = ft_add_nest(nest, buffer);
 	}
 	line = get_newline(nest);
