@@ -27,6 +27,7 @@ while (line != NULL)
     line = get_next_line(fd);
 }
 close(fd);
+```
 
 ## Bonus Features
 I also added the following bonuses:
